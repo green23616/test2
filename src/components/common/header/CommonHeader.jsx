@@ -2,11 +2,11 @@ import styles from './CommonHeader.module.scss';
 
 function CommonHeader() {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className={styles.header__logoBox}>
         <img
-          src="https://via.placeholder.com/500"
-          alt=""
+          src="https://via.placeholder.com/150"
+          alt="logo"
           className={styles.header__logoBox__logo}
         />
         <span className={styles.header__logoBox__title}>PhotoSplash</span>
@@ -18,7 +18,7 @@ function CommonHeader() {
           green23616@gmail.com
         </span>
       </div>
-    </div>
+    </header>
   );
 }
 

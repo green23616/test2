@@ -9,7 +9,7 @@ function CommonNavigation() {
   });
 
   return (
-    <div className={styles.navigation}>
+    <nav className={styles.navigation}>
       {navigation.map(item => {
         return (
           <Link
@@ -21,7 +21,7 @@ function CommonNavigation() {
           </Link>
         );
       })}
-    </div>
+    </nav>
   );
 }
 

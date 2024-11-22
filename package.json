@@ -20,6 +20,7 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.61.0",
     "axios": "^1.7.7",
     "localforage": "^1.10.0",
     "match-sorter": "^8.0.0",

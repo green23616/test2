@@ -9,7 +9,7 @@ function CommonSearchBar() {
           placeholder="검색하소"
           className={styles.searchBar__search__input}
         />
-        <img src="https://via.placeholder.com/30" alt="icon" />
+        <img src="" alt="icon" />
       </div>
     </div>
   );
