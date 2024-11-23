@@ -5,11 +5,11 @@ function CommonFooter() {
     <footer className={styles.footer}>
       <div className={styles.pagination}>
         <button className={styles.pagination__button}>
-          <img src="https://via.placeholder.com/10" alt="button__left" />
+          <img src="src/assets/icons/icon-arrowLeft.svg" alt="button__left" />
         </button>
         <span>1</span>
         <button className={styles.pagination__button}>
-          <img src="https://via.placeholder.com/10" alt="button__right" />
+          <img src="src/assets/icons/icon-arrowRight.svg" alt="button__right" />
         </button>
       </div>
     </footer>

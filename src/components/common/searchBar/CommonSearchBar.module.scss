@@ -40,5 +40,9 @@
 
       color: color.$color-gray-500;
     }
+
+    &__image {
+      cursor: pointer;
+    }
   }
 }

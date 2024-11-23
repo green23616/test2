@@ -5,7 +5,7 @@ function CommonHeader() {
     <header className={styles.header}>
       <div className={styles.header__logoBox}>
         <img
-          src="https://via.placeholder.com/150"
+          src="src/assets/images/image-logo.png"
           alt="logo"
           className={styles.header__logoBox__logo}
         />
