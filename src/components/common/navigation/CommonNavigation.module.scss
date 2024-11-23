@@ -16,5 +16,20 @@
     text-decoration: none;
     color: color.$color-white-700;
     font-weight: 500;
+
+    &.inactive {
+      color: color.$color-white-700;
+      border-bottom: none;
+    }
+
+    &.active {
+      color: color.$color-black-900;
+      border-bottom: 2px solid color.$color-white-700;
+    }
+
+    &:hover {
+      color: color.$color-black-900;
+      font-weight: 600;
+    }
   }
 }

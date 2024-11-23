@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 // Components
 import Header from '@components/common/header/CommonHeader.jsx';
 import Search from '@components/common/searchBar/CommonSearchBar.jsx';
@@ -19,7 +19,7 @@ function Index() {
   const [searchValue] = useRecoilState(searchState);
   const [pageValue] = useRecoilState(pageState);
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState([]);
+  const [selectedData, setSelectedData] = useState([]);
 
   // Tanstack Query를 통한 Data fetching
   const { data, isLoading, isError, error } =
@@ -35,12 +35,7 @@ function Index() {
   }
 
   const CARD_LIST = data.map(item => (
-    <Card
-      data={item}
-      key={item.id}
-      setOpen={setOpen}
-      setSelected={setSelected}
-    />
+    <Card data={item} key={item.id} setOpen={setOpen} setSelectedData={setSelectedData} />
   ));
 
   return (
@@ -51,13 +46,8 @@ function Index() {
       <div className={styles.page__contents}>
         <div className={styles.page__contents__introBox}>
           <div className={styles.wrapper}>
-            <span className={styles.wrapper__title}>
-              안녕하세요, 나는 개발자 Jw이다
-            </span>
-            <span className={styles.wrapper__desc}>
-              개발 좋아하고 배우면 재미있다. 가족 건강이 제일 중요하고 현재
-              취미라고 할만한건 딱히 없다고 말할수있다.
-            </span>
+            <span className={styles.wrapper__title}>Photosplash</span>
+            <span className={styles.wrapper__desc}>반갑습니다 안녕하세요 잘가요 사랑해요</span>
             {/* SEARCH UI */}
             <Search />
           </div>
@@ -66,7 +56,7 @@ function Index() {
       </div>
       {/* FOOTER UI */}
       <Footer />
-      {open && <DetailDialog data={selected} setOpen={setOpen} />}
+      {open && <DetailDialog data={selectedData} setOpen={setOpen} />}
     </div>
   );
 }

@@ -8,6 +8,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/:id" element={<MainPage />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
