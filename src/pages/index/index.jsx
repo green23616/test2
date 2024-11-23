@@ -1,45 +1,47 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useMemo, useState } from 'react';
 // Components
 import Header from '@components/common/header/CommonHeader.jsx';
 import Search from '@components/common/searchBar/CommonSearchBar.jsx';
 import Navigation from '@/components/common/navigation/CommonNavigation.jsx';
 import Footer from '@components/common/footer/CommonFooter.jsx';
 import Card from './components/Card';
+import DetailDialog from '@/components/common/dialog/DetailDialog';
 // CSS
 import styles from './styles/index.module.scss';
+// Recoil
 import { useRecoilState } from 'recoil';
 import { searchState } from '@/store/atoms/searchState';
 import { pageState } from '@/store/atoms/pageState';
+// Tanstack Query
+import useFetchImages from '@/hooks/useFetchImages';
 
 function Index() {
   const [searchValue] = useRecoilState(searchState);
   const [pageValue] = useRecoilState(pageState);
-  const API_URL = 'https://api.unsplash.com/search/photos';
-  const API_KEY = 'pAEouZcfIjwAylXEegT3seeJ5uAtN9-lmD29z0VLQIw';
-  const PER_PAGE = 30;
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState([]);
 
-  // React Query를 통한 Data fetching
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['images', searchValue, pageValue], // 쿼리 키 (캐싱 및 리패칭에 사용)
-    queryFn: async () => {
-      const res = await axios.get(
-        `${API_URL}?query=${searchValue}&client_id=${API_KEY}&page=${pageValue}&per_page=${PER_PAGE}`,
-      );
-      return res.data.results;
-    },
-  });
+  // Tanstack Query를 통한 Data fetching
+  const { data, isLoading, isError, error } =
+    // Custom Hook을 통한 분리
+    useFetchImages(searchValue, pageValue);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (isError) {
-    console.error(error);
-    return <div>Error fetching data</div>;
+    return <div>Error fetching data: {error}</div>;
   }
 
-  const cardList = data.map(item => <Card data={item} key={item.id} />);
+  const CARD_LIST = data.map(item => (
+    <Card
+      data={item}
+      key={item.id}
+      setOpen={setOpen}
+      setSelected={setSelected}
+    />
+  ));
 
   return (
     <div className={styles.page}>
@@ -60,10 +62,11 @@ function Index() {
             <Search />
           </div>
         </div>
-        <div className={styles.page__contents__imageBox}>{cardList}</div>
+        <div className={styles.page__contents__imageBox}>{CARD_LIST}</div>
       </div>
       {/* FOOTER UI */}
       <Footer />
+      {open && <DetailDialog data={selected} setOpen={setOpen} />}
     </div>
   );
 }
