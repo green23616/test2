@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './CommonSearchBar.module.scss';
 import { useSetRecoilState } from 'recoil';
 import { searchState } from '@/store/atoms/searchState';
 
 function CommonSearchBar() {
+  console.log('SearchBar가 렌더링 되고 있습니다.');
   const [searchValue, setSearchValue] = useState('');
   const setSearch = useSetRecoilState(searchState);
 
@@ -24,6 +25,7 @@ function CommonSearchBar() {
       if (searchValue === '') {
         setSearch('Korea');
       } else {
+        console.log(searchValue);
         setSearch(searchValue);
       }
     }

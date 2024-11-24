@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
+import React from 'react';
 import styles from './DetailDialog.module.scss';
 function DetailDialog({ data, setOpen }) {
+  console.log('Dialog가 렌더링 되고 있습니다.');
   return (
     <div className={styles.container}>
       <div className={styles.container__dialog}>
@@ -24,10 +26,7 @@ function DetailDialog({ data, setOpen }) {
           </div>
           <div className={styles.bookmark}>
             <button className={styles.bookmark__button}>
-              <span
-                className="material-symbols-outlined"
-                style={{ fontSize: 16 + 'px' }}
-              >
+              <span className="material-symbols-outlined" style={{ fontSize: 16 + 'px' }}>
                 favorite
               </span>
               북마크
@@ -53,9 +52,7 @@ function DetailDialog({ data, setOpen }) {
               </span>
             </div>{' '}
             <div className={styles.infoBox__item}>
-              <span className={styles.infoBox__item__label}>
-                마지막 업데이트
-              </span>
+              <span className={styles.infoBox__item__label}>마지막 업데이트</span>
               <span className={styles.infoBox__item__value}>
                 {data.created_at.split('T')[0]}
               </span>
@@ -74,4 +71,4 @@ function DetailDialog({ data, setOpen }) {
   );
 }
 
-export default DetailDialog;
+export default React.memo(DetailDialog);

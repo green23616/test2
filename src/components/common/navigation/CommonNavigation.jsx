@@ -10,6 +10,7 @@ import { pageState } from '@/store/atoms/pageState';
 import { searchState } from '@/store/atoms/searchState';
 
 function CommonNavigation() {
+  console.log('navigation이 렌더링 되고있습니다.');
   const [navigation, setNavigation] = useState(() => {
     return navJson;
   });
@@ -20,8 +21,7 @@ function CommonNavigation() {
   useEffect(() => {
     const updatedNavigation = navigation.map(nav => ({
       ...nav,
-      isActive:
-        nav.path === location.pathname || location.pathname.includes(nav.path),
+      isActive: nav.path === location.pathname || location.pathname.includes(nav.path),
     }));
 
     setNavigation(updatedNavigation);
